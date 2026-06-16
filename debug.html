@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Query UI Debug</title>
+</head>
+<body>
+  <h1>Query UI Diagnostic</h1>
+  <div id="status"></div>
+  <script>
+    async function test() {
+      const status = document.getElementById('status');
+      try {
+        const res = await fetch('/api/companies?page_size=1');
+        const data = await res.json();
+        status.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+      } catch (e) {
+        status.innerHTML = '<pre style="color:red">' + e + '</pre>';
+      }
+    }
+    test();
+  </script>
+</body>
+</html>
